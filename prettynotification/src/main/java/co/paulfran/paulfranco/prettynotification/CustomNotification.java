@@ -2,6 +2,8 @@ package co.paulfran.paulfranco.prettynotification;
 
 import android.app.NotificationManager;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
 
 public class CustomNotification {
@@ -17,4 +19,26 @@ public class CustomNotification {
         manager.notify(10, mBuilder.build());
 
     }
+
+    public void bigTextNotification(Context context, String title, String content, String bText, String summary, int sIcon, int bIcon) {
+
+        Bitmap bImage = BitmapFactory.decodeResource(context.getResources(), bIcon);
+
+        NotificationCompat.BigTextStyle bigTextStyle = new NotificationCompat.BigTextStyle();
+        bigTextStyle.bigText(bText);
+        bigTextStyle.setSummaryText(summary);
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
+                .setSmallIcon(sIcon)
+                .setLargeIcon(bImage)
+                .setContentTitle(title)
+                .setContentText(content)
+                .setStyle(bigTextStyle);
+
+        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        manager.notify(11, mBuilder.build());
+    }
+
+
 }

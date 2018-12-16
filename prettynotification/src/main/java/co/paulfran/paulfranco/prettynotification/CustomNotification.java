@@ -40,5 +40,28 @@ public class CustomNotification {
         manager.notify(11, mBuilder.build());
     }
 
+    public void inboxNotification(Context context, String content, String bTitle, String title, String summary, int icon, String ... messages) {
+
+        NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+
+        inboxStyle.setBigContentTitle(bTitle);
+        inboxStyle.addLine(messages[0]);
+        inboxStyle.addLine(messages[1]);
+        inboxStyle.addLine(messages[2]);
+        inboxStyle.addLine(messages[3]);
+        inboxStyle.setSummaryText(summary);
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
+                .setSmallIcon(icon)
+                .setContentTitle(title)
+                .setContentText(content)
+                .setStyle(inboxStyle);
+
+        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        manager.notify(12, mBuilder.build());
+
+    }
+
 
 }
